@@ -8,6 +8,10 @@ All notable changes to atlassian-scout will be documented here.
 - **Renamed from claude-atlassian to atlassian-scout.** The skills keep their names:
   `/claude-atlassian:analyze-jira-ticket` is `/atlassian-scout:analyze-jira-ticket`, and so on.
 
+### Fixed
+- **The analysis skills stop when mcp-atlassian is not connected** instead of letting the reader
+  improvise a REST call with the MCP config's token (seen on Grok in an untrusted folder).
+
 ## [0.5.1] - 2026-09-16
 
 ### Fixed
