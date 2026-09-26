@@ -95,9 +95,14 @@ with `enabled_tools` keeping the session to read tools; the attachment download 
   (e.g. [sooperset/mcp-atlassian](https://github.com/sooperset/mcp-atlassian)), configured
   with access to your Jira and Confluence. The skills call
   `mcp__mcp-atlassian__jira_*` / `mcp__mcp-atlassian__confluence_*` tools — a different
-  server name breaks these prefixes, and without the MCP the two analysis skills are
-  non-functional (`investigate-bug` and `investigate-feature` still work if you supply the
-  ticket summary yourself — they skip their Atlassian scout and say so in the report).
+  server name breaks these prefixes. Without the MCP the two analysis skills do not stop:
+  their reading subagent may fall back to read-only REST calls with a token taken through the
+  attachment downloader's credential lookup above — seen on Grok in an untrusted folder, where
+  that went around the session's MCP permission rules (`investigate-bug` and
+  `investigate-feature` still work if you supply the ticket summary yourself — they skip their
+  Atlassian scout and say so in the report). On Grok a server defined in a project's
+  `.mcp.json` starts only in a trusted folder (`grok --trust`); `grok mcp add` registers it for
+  every folder.
 - **Required:** Python 3 for the attachment downloader. Standard library only —
   nothing to install.
 - **Recommended:** use read-only Jira/Confluence credentials or scopes for the MCP — the
