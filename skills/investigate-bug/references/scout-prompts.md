@@ -88,8 +88,9 @@ Report commit hash, date, author and the line that changed — not a retold diff
 
 ## Atlassian scout
 ~~~
-If `mcp__mcp-atlassian__*` tools are unavailable, return `NOT FOUND: Atlassian MCP
-unavailable` immediately and stop.
+If no Atlassian MCP tool is reachable — Claude Code: no `mcp__mcp-atlassian__*` tool;
+Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool` finds no `mcp-atlassian__*`
+tool — return `NOT FOUND: Atlassian MCP unavailable` immediately and stop.
 Look for earlier reports of the same failure. Error text: {ERROR_TEXT}. Terms: {TERMS}.
 Exclude {TICKET_KEY} itself. Use mcp__mcp-atlassian__jira_search,
 mcp__mcp-atlassian__confluence_search, mcp__mcp-atlassian__confluence_get_page.

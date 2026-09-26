@@ -10,7 +10,10 @@ All notable changes to atlassian-scout will be documented here.
 
 ### Fixed
 - **The analysis skills stop when mcp-atlassian is not connected** instead of letting the reader
-  improvise a REST call with the MCP config's token (seen on Grok in an untrusted folder).
+  improvise a REST call with the MCP config's token (seen on Grok in an untrusted folder). The
+  rule, like the investigate-* scouts' own, names each harness's form of the tools:
+  `mcp__mcp-atlassian__*` in Claude Code, `mcp__mcp_atlassian__*` in Codex, `mcp-atlassian__*`
+  found through `search_tool` in Grok.
 
 ## [0.5.1] - 2026-09-16
 
