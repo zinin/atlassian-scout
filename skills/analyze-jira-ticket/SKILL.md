@@ -11,7 +11,7 @@ Read and summarize a Jira ticket using subagents to protect the calling context 
 
 **Required argument:** Jira issue key (e.g., `PROJ-123`)
 
-Invocation: `/claude-atlassian:analyze-jira-ticket PROJ-123`
+Invocation: `/atlassian-scout:analyze-jira-ticket PROJ-123`
 
 ## Protocol
 
@@ -29,7 +29,7 @@ prompt: <see prompt template below>
 
 ### Step 2: Return Summary
 
-The subagent returns a structured summary. Present it to the user as-is. Do not re-fetch or re-read anything from Jira. Then add one line naming the next step for work in code: `/claude-atlassian:investigate-bug` if the ticket is a bug, `/claude-atlassian:investigate-feature` if it is not.
+The subagent returns a structured summary. Present it to the user as-is. Do not re-fetch or re-read anything from Jira. Then add one line naming the next step for work in code: `/atlassian-scout:investigate-bug` if the ticket is a bug, `/atlassian-scout:investigate-feature` if it is not.
 
 ## Subagent Prompt Template
 
@@ -123,7 +123,7 @@ Return EXACTLY this structure:
 
 ## Example
 
-User: `/claude-atlassian:analyze-jira-ticket PROJ-123`
+User: `/atlassian-scout:analyze-jira-ticket PROJ-123`
 
 Claude dispatches subagent with the prompt template (replacing `{TICKET_KEY}` with `PROJ-123`), then presents the returned summary.
 

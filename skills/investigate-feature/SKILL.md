@@ -21,15 +21,15 @@ it with the user, do not route around it.
 
 | Gate | Fail action |
 |------|-------------|
-| A ticket summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/claude-atlassian:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
-| Nothing observably misbehaves — the ticket asks for new behaviour, or for a change to code or behaviour that works as intended | STOP. Say that a bug is `investigate-bug`'s job and offer `/claude-atlassian:investigate-bug` |
+| A ticket summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/atlassian-scout:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
+| Nothing observably misbehaves — the ticket asks for new behaviour, or for a change to code or behaviour that works as intended | STOP. Say that a bug is `investigate-bug`'s job and offer `/atlassian-scout:investigate-bug` |
 | `git rev-parse --show-toplevel` succeeds in the working directory | Ask the user where the code lives |
 
 A ticket the size of an epic is deliberately not a gate but an outcome: the scale usually
 becomes visible only after recon, when the work turns out to sit on three subsystems at
 once.
 
-Invocation: `/claude-atlassian:investigate-feature [PROJ-123]`. The argument is optional —
+Invocation: `/atlassian-scout:investigate-feature [PROJ-123]`. The argument is optional —
 it only picks the ticket when several were analyzed in this conversation.
 
 ## Read-only contract

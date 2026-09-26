@@ -17,11 +17,11 @@ it with the user, do not route around it.
 
 | Gate | Fail action |
 |------|-------------|
-| A bug summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/claude-atlassian:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
-| The ticket is a bug — something observably misbehaves | STOP. Say this skill is bugs-only and offer `/claude-atlassian:investigate-feature`, which covers features, tasks, improvements and tech debt |
+| A bug summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/atlassian-scout:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
+| The ticket is a bug — something observably misbehaves | STOP. Say this skill is bugs-only and offer `/atlassian-scout:investigate-feature`, which covers features, tasks, improvements and tech debt |
 | `git rev-parse --show-toplevel` succeeds in the working directory | Ask the user where the code lives |
 
-Invocation: `/claude-atlassian:investigate-bug [PROJ-123]`. The argument is optional — it
+Invocation: `/atlassian-scout:investigate-bug [PROJ-123]`. The argument is optional — it
 only picks the ticket when several were analyzed in this conversation.
 
 ## Read-only contract

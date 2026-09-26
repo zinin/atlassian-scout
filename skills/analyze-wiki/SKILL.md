@@ -15,10 +15,10 @@ Read and summarize a Confluence wiki page using a subagent to protect the callin
 - **question** (optional): specific question to answer about the page content
 
 Examples:
-- `/claude-atlassian:analyze-wiki 123456789`
-- `/claude-atlassian:analyze-wiki 123456789 What servers are configured?`
-- `/claude-atlassian:analyze-wiki https://wiki.example.com/spaces/DEV/pages/123/Some+Page`
-- `/claude-atlassian:analyze-wiki DEV:Architecture Overview What framework is used for auth?`
+- `/atlassian-scout:analyze-wiki 123456789`
+- `/atlassian-scout:analyze-wiki 123456789 What servers are configured?`
+- `/atlassian-scout:analyze-wiki https://wiki.example.com/spaces/DEV/pages/123/Some+Page`
+- `/atlassian-scout:analyze-wiki DEV:Architecture Overview What framework is used for auth?`
 
 ## Argument Parsing
 

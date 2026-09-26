@@ -4,6 +4,10 @@ All notable changes to claude-atlassian will be documented here.
 
 ## [Unreleased]
 
+### Changed
+- **Renamed from claude-atlassian to atlassian-scout.** The skills keep their names:
+  `/claude-atlassian:analyze-jira-ticket` is `/atlassian-scout:analyze-jira-ticket`, and so on.
+
 ## [0.5.1] - 2026-09-16
 
 ### Fixed
