@@ -1,6 +1,6 @@
 # atlassian-scout
 
-Claude Code plugin: Jira ticket analysis, Confluence page reading, and
+Agent plugin: Jira ticket analysis, Confluence page reading, and
 cross-repository investigation — of a bug's root cause, or of where a new piece of
 work lands — via context-protecting subagents: the main context receives only a
 compact summary, never raw MCP output.
@@ -84,6 +84,10 @@ token itself is never printed.
 /plugin marketplace add zinin/agent-plugins
 /plugin install atlassian-scout@zinin
 ```
+
+In Codex (`codex plugin add atlassian-scout@zinin`), declare the server in `~/.codex/config.toml`
+as `[mcp_servers.mcp-atlassian]`: the smoke (`codex exec` 0.157) read a Jira ticket through it,
+with `enabled_tools` keeping the session to read tools; the attachment download was not exercised.
 
 ## Dependencies
 
