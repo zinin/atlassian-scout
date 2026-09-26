@@ -118,4 +118,4 @@ with `enabled_tools` keeping the session to read tools; the attachment download 
 
 ## See also
 
-- [claude-forge](https://github.com/zinin/claude-forge) — build/test/lint delegation and dependency-update plugin by the same author
+- [build-forge](https://github.com/zinin/build-forge) — build/test/lint delegation and dependency-update plugin by the same author
