@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to claude-atlassian will be documented here.
+All notable changes to atlassian-scout will be documented here.
 
 ## [Unreleased]
 
