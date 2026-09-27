@@ -21,15 +21,15 @@ it with the user, do not route around it.
 
 | Gate | Fail action |
 |------|-------------|
-| A ticket summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/claude-atlassian:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
-| Nothing observably misbehaves — the ticket asks for new behaviour, or for a change to code or behaviour that works as intended | STOP. Say that a bug is `investigate-bug`'s job and offer `/claude-atlassian:investigate-bug` |
+| A ticket summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/atlassian-scout:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
+| Nothing observably misbehaves — the ticket asks for new behaviour, or for a change to code or behaviour that works as intended | STOP. Say that a bug is `investigate-bug`'s job and offer `/atlassian-scout:investigate-bug` |
 | `git rev-parse --show-toplevel` succeeds in the working directory | Ask the user where the code lives |
 
 A ticket the size of an epic is deliberately not a gate but an outcome: the scale usually
 becomes visible only after recon, when the work turns out to sit on three subsystems at
 once.
 
-Invocation: `/claude-atlassian:investigate-feature [PROJ-123]`. The argument is optional —
+Invocation: `/atlassian-scout:investigate-feature [PROJ-123]`. The argument is optional —
 it only picks the ticket when several were analyzed in this conversation.
 
 ## Read-only contract
@@ -128,10 +128,11 @@ not yours. You receive coordinates and short quotes.
   kind of machinery — a REST endpoint, a feature flag, a DB migration, a scheduled job; in
   `survey` mode fill it with the area the ticket touches instead — the template's own
   survey branch does the rest.
-- Skip the Atlassian scout when `mcp__mcp-atlassian__*` tools are unavailable, and say
-  so in the report instead of implying the search happened. For a feature this scout weighs
-  more than it does for a bug: requirements and past decisions live in Confluence, not in
-  the code.
+- Skip the Atlassian scout when no Atlassian MCP tool is reachable — Claude Code: no
+  `mcp__mcp-atlassian__*` tool; Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool`
+  finds no `mcp-atlassian__*` tool — and say so in the report instead of implying the
+  search happened. For a feature this scout weighs more than it does for a bug:
+  requirements and past decisions live in Confluence, not in the code.
 - **Ticket attachments.** For a feature these are usually mockups, sample data and
   specifications rather than logs — and often they are the only acceptance criteria the
   ticket has. If `analyze-jira-ticket` already ran, they are in

@@ -17,11 +17,11 @@ it with the user, do not route around it.
 
 | Gate | Fail action |
 |------|-------------|
-| A bug summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/claude-atlassian:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
-| The ticket is a bug — something observably misbehaves | STOP. Say this skill is bugs-only and offer `/claude-atlassian:investigate-feature`, which covers features, tasks, improvements and tech debt |
+| A bug summary is in the conversation — from `analyze-jira-ticket`, or provided by the user | STOP. A ticket key alone is not a summary: ask to run `/atlassian-scout:analyze-jira-ticket {KEY}` first. Do not read Jira yourself to fill the gap |
+| The ticket is a bug — something observably misbehaves | STOP. Say this skill is bugs-only and offer `/atlassian-scout:investigate-feature`, which covers features, tasks, improvements and tech debt |
 | `git rev-parse --show-toplevel` succeeds in the working directory | Ask the user where the code lives |
 
-Invocation: `/claude-atlassian:investigate-bug [PROJ-123]`. The argument is optional — it
+Invocation: `/atlassian-scout:investigate-bug [PROJ-123]`. The argument is optional — it
 only picks the ticket when several were analyzed in this conversation.
 
 ## Read-only contract
@@ -107,8 +107,10 @@ not yours. You receive coordinates and short quotes.
 - Fill the templates' placeholders from the ticket evidence and your own reading. If a
   value is not known yet — `{BOUNDARY}` especially — pass `unknown — find it yourself`
   rather than serializing the scouts to discover it first.
-- Skip the Atlassian scout when `mcp__mcp-atlassian__*` tools are unavailable, and say
-  so in the report instead of implying the search happened.
+- Skip the Atlassian scout when no Atlassian MCP tool is reachable — Claude Code: no
+  `mcp__mcp-atlassian__*` tool; Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool`
+  finds no `mcp-atlassian__*` tool — and say so in the report instead of implying the
+  search happened.
 - **Ticket attachments.** Logs, stack traces and screenshots attached to the ticket are
   evidence. If `analyze-jira-ticket` already ran, they are in
   `docs/jira-attachments/<KEY>/`; otherwise fetch them yourself with

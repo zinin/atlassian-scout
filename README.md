@@ -1,23 +1,23 @@
-# claude-atlassian
+# atlassian-scout
 
-Claude Code plugin: Jira ticket analysis, Confluence page reading, and
+Agent plugin: Jira ticket analysis, Confluence page reading, and
 cross-repository investigation — of a bug's root cause, or of where a new piece of
 work lands — via context-protecting subagents: the main context receives only a
 compact summary, never raw MCP output.
 
 ## Features
 
-(Slash commands are namespaced under `claude-atlassian:` — that is how Claude Code surfaces plugin commands.)
+(Slash commands are namespaced under `atlassian-scout:` — that is how Claude Code surfaces plugin commands.)
 
-- **`/claude-atlassian:analyze-jira-ticket PROJ-123`** — one subagent reads the ticket, comments, linked Confluence pages, attachments, and linked issues, then returns a structured summary.
-- **`/claude-atlassian:analyze-wiki <page> [question]`** — one subagent reads a Confluence page (numeric id, URL, or `SPACE:Page Title`), its children/linked pages and comments; optionally answers a question about the content.
-- **`/claude-atlassian:investigate-bug [PROJ-123]`** — runs after `analyze-jira-ticket`:
+- **`/atlassian-scout:analyze-jira-ticket PROJ-123`** — one subagent reads the ticket, comments, linked Confluence pages, attachments, and linked issues, then returns a structured summary.
+- **`/atlassian-scout:analyze-wiki <page> [question]`** — one subagent reads a Confluence page (numeric id, URL, or `SPACE:Page Title`), its children/linked pages and comments; optionally answers a question about the content.
+- **`/atlassian-scout:investigate-bug [PROJ-123]`** — runs after `analyze-jira-ticket`:
   traces the bug from the ticket summary into the code, scouting the current repository,
   neighbouring projects, git history and related tickets in parallel subagents, then
   reports a root cause with a fix plan. Bugs only, and strictly read-only — it never
   edits code; the only things it puts on disk are the ticket's attachments and, once
   you confirm, its report.
-- **`/claude-atlassian:investigate-feature [PROJ-123]`** — the non-bug counterpart, which
+- **`/atlassian-scout:investigate-feature [PROJ-123]`** — the non-bug counterpart, which
   also runs after `analyze-jira-ticket`: grounds the request in code (what is being asked,
   draft acceptance criteria tagged by source, where the work lands, which precedents it
   should follow, what the neighbours must change, which decisions are still open), then,
@@ -81,9 +81,14 @@ token itself is never printed.
 ## Install
 
 ```
-/plugin marketplace add zinin/claude-plugins
-/plugin install claude-atlassian@zinin
+/plugin marketplace add zinin/agent-plugins
+/plugin install atlassian-scout@zinin
 ```
+
+In Codex (`codex plugin marketplace add zinin/agent-plugins`, then
+`codex plugin add atlassian-scout@zinin`), declare the server in `~/.codex/config.toml` as
+`[mcp_servers.mcp-atlassian]`: the smoke (`codex exec` 0.157) read a Jira ticket through it, with
+`enabled_tools` keeping the session to read tools; the attachment download was not exercised.
 
 ## Dependencies
 
@@ -91,9 +96,11 @@ token itself is never printed.
   (e.g. [sooperset/mcp-atlassian](https://github.com/sooperset/mcp-atlassian)), configured
   with access to your Jira and Confluence. The skills call
   `mcp__mcp-atlassian__jira_*` / `mcp__mcp-atlassian__confluence_*` tools — a different
-  server name breaks these prefixes, and without the MCP the two analysis skills are
-  non-functional (`investigate-bug` and `investigate-feature` still work if you supply the
-  ticket summary yourself — they skip their Atlassian scout and say so in the report).
+  server name breaks these prefixes, and without the MCP the two analysis skills stop and
+  say so (`investigate-bug` and `investigate-feature` still work if you supply the ticket
+  summary yourself — they skip their Atlassian scout and say so in the report). On Grok a
+  server defined in a project's `.mcp.json` starts only in a trusted folder (`grok --trust`);
+  `grok mcp add` registers it for every folder.
 - **Required:** Python 3 for the attachment downloader. Standard library only —
   nothing to install.
 - **Recommended:** use read-only Jira/Confluence credentials or scopes for the MCP — the
@@ -109,4 +116,4 @@ token itself is never printed.
 
 ## See also
 
-- [claude-forge](https://github.com/zinin/claude-forge) — build/test/lint delegation and dependency-update plugin by the same author
+- [build-forge](https://github.com/zinin/build-forge) — build/test/lint delegation and dependency-update plugin by the same author

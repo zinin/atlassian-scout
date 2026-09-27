@@ -1,8 +1,21 @@
 # Changelog
 
-All notable changes to claude-atlassian will be documented here.
+All notable changes to atlassian-scout will be documented here.
 
 ## [Unreleased]
+
+### Changed
+- **Renamed from claude-atlassian to atlassian-scout.** The skills keep their names:
+  `/claude-atlassian:analyze-jira-ticket` is `/atlassian-scout:analyze-jira-ticket`, and so on.
+
+### Fixed
+- **The analysis skills stop when mcp-atlassian is not connected** instead of letting the reader
+  improvise a REST call with the MCP config's token (seen on Grok in an untrusted folder). The
+  rule, like the investigate-* scouts' own, names each harness's form of the tools:
+  `mcp__mcp-atlassian__*` in Claude Code, `mcp__mcp_atlassian__*` in Codex, `mcp-atlassian__*`
+  found through `search_tool` in Grok. investigate-bug and investigate-feature apply the same
+  check before they dispatch the Atlassian scout — Codex and Grok used to skip it — and each
+  template says what the tool names are in Codex and Grok.
 
 ## [0.5.1] - 2026-09-16
 

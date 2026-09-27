@@ -148,8 +148,11 @@ Report commit hash, date, author and the line that changed — not a retold diff
 
 ## Atlassian scout
 ~~~
-If `mcp__mcp-atlassian__*` tools are unavailable, return `NOT FOUND: Atlassian MCP
-unavailable` immediately and stop.
+If no Atlassian MCP tool is reachable — Claude Code: no `mcp__mcp-atlassian__*` tool;
+Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool` finds no `mcp-atlassian__*`
+tool — return `NOT FOUND: Atlassian MCP unavailable` immediately and stop.
+The tool names below are Claude Code's; in Codex call the same tool as
+`mcp__mcp_atlassian__<tool>`, in Grok as `mcp-atlassian__<tool>` through `use_tool`.
 
 Find what has already been decided about this work. Ticket: {TICKET_KEY}. Terms: {TERMS}.
 Exclude {TICKET_KEY} itself from the results.
