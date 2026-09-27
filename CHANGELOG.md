@@ -2,7 +2,7 @@
 
 All notable changes to atlassian-scout will be documented here.
 
-## [Unreleased]
+## [0.6.0] - 2026-09-27
 
 ### Changed
 - **Renamed from claude-atlassian to atlassian-scout.** The skills keep their names:

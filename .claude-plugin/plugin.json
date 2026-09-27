@@ -1,6 +1,6 @@
 {
   "name": "atlassian-scout",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "displayName": "Atlassian Scout",
   "description": "Jira ticket analysis, Confluence page reading, and cross-repository investigation of bugs and of new work via context-protecting subagents",
   "author": { "name": "Alexander V. Zinin", "email": "azinin@gmail.com", "url": "https://github.com/zinin" },
