@@ -85,9 +85,10 @@ token itself is never printed.
 /plugin install atlassian-scout@zinin
 ```
 
-In Codex (`codex plugin add atlassian-scout@zinin`), declare the server in `~/.codex/config.toml`
-as `[mcp_servers.mcp-atlassian]`: the smoke (`codex exec` 0.157) read a Jira ticket through it,
-with `enabled_tools` keeping the session to read tools; the attachment download was not exercised.
+In Codex (`codex plugin marketplace add zinin/agent-plugins`, then
+`codex plugin add atlassian-scout@zinin`), declare the server in `~/.codex/config.toml` as
+`[mcp_servers.mcp-atlassian]`: the smoke (`codex exec` 0.157) read a Jira ticket through it, with
+`enabled_tools` keeping the session to read tools; the attachment download was not exercised.
 
 ## Dependencies
 
