@@ -107,8 +107,10 @@ not yours. You receive coordinates and short quotes.
 - Fill the templates' placeholders from the ticket evidence and your own reading. If a
   value is not known yet — `{BOUNDARY}` especially — pass `unknown — find it yourself`
   rather than serializing the scouts to discover it first.
-- Skip the Atlassian scout when `mcp__mcp-atlassian__*` tools are unavailable, and say
-  so in the report instead of implying the search happened.
+- Skip the Atlassian scout when no Atlassian MCP tool is reachable — Claude Code: no
+  `mcp__mcp-atlassian__*` tool; Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool`
+  finds no `mcp-atlassian__*` tool — and say so in the report instead of implying the
+  search happened.
 - **Ticket attachments.** Logs, stack traces and screenshots attached to the ticket are
   evidence. If `analyze-jira-ticket` already ran, they are in
   `docs/jira-attachments/<KEY>/`; otherwise fetch them yourself with

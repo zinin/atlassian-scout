@@ -128,10 +128,11 @@ not yours. You receive coordinates and short quotes.
   kind of machinery — a REST endpoint, a feature flag, a DB migration, a scheduled job; in
   `survey` mode fill it with the area the ticket touches instead — the template's own
   survey branch does the rest.
-- Skip the Atlassian scout when `mcp__mcp-atlassian__*` tools are unavailable, and say
-  so in the report instead of implying the search happened. For a feature this scout weighs
-  more than it does for a bug: requirements and past decisions live in Confluence, not in
-  the code.
+- Skip the Atlassian scout when no Atlassian MCP tool is reachable — Claude Code: no
+  `mcp__mcp-atlassian__*` tool; Codex: no `mcp__mcp_atlassian__*` tool; Grok: `search_tool`
+  finds no `mcp-atlassian__*` tool — and say so in the report instead of implying the
+  search happened. For a feature this scout weighs more than it does for a bug:
+  requirements and past decisions live in Confluence, not in the code.
 - **Ticket attachments.** For a feature these are usually mockups, sample data and
   specifications rather than logs — and often they are the only acceptance criteria the
   ticket has. If `analyze-jira-ticket` already ran, they are in
